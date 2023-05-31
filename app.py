@@ -1,16 +1,18 @@
 import streamlit as st
 import openai
-import re
 import json
 from docx import Document
 from docx.shared import Inches
 
+with open('config.json') as f:
+    config = json.load(f)
+    
 # Variables
-openai.api_type = "azure"
-openai.api_version = "2022-12-01" 
-openai.api_base = "https://sap-cx-customerinsights-openai.openai.azure.com/" 
-openai.api_key = "3fe86cce6d114f23af3d2998c9fd7363"
-engine = "customerinsights1"
+openai.api_type = config["openai"]["api_type"]
+openai.api_version = config["openai"]["api_version"]
+openai.api_base = config["openai"]["api_base"]
+openai.api_key = config["openai"]["api_key"]
+engine = config["engine"]["engine"]
 
 
 # pip install openai
